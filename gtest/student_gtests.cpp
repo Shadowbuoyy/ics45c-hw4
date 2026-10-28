@@ -51,7 +51,16 @@ TEST(StringFunction, strncpy) {
 }
 
 TEST(StringFunction, strcat) {
-    EXPECT_TRUE(false);
+    char dest[20] = "Bobby, ";
+	const char* src = "Brown";
+
+	char* result = String::strcat(dest, src);
+	EXPECT_EQ(result, dest);
+	EXPECT_STREQ(dest, "Bobby, Brown");
+
+	const char* empty_src = "";
+	String::strcat(dest, empty_src);
+	EXPECT_STREQ(dest, "Bobby, Brown");
 }
 
 TEST(StringFunction, strncat) {
