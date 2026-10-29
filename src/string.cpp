@@ -246,3 +246,25 @@ char * String::strdup(const char* src){
 
 	return dest;
 }
+
+void String::print(std::ostream &out) const{
+	out << buf;
+}
+
+void String::read(std::istream &in){
+	char temp[1024];
+	in >> temp;
+
+	delete[] buf;
+	buf = strdup(temp);
+}
+
+std::ostream &operator<<(std::ostream &out, String s){
+	s.print(out);
+	return out;
+}
+
+std::istream &operator>>(std::istream &in, String &s) {
+	s.read(in);
+	return in;
+}
