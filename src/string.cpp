@@ -81,6 +81,14 @@ String &String::operator+=(String s){
 	return *this;
 }
 
+char &String::operator[](int index){
+	return buf[index];
+}
+
+const char &String::operator[](int index) const{
+	return buf[index];
+}
+
 void String::reverse_cpy(char *dest, const char *src){
 	int len = strlen(src);
 	int i = 0;
