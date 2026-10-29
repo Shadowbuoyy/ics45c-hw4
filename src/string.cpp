@@ -30,6 +30,57 @@ void String::swap(String &s){
 	std::swap(buf, s.buf);
 }
 
+int String::size() const{
+	return strlen(buf);
+}
+
+bool String::operator==(String s) const{
+	return strcmp(buf, s.buf) == 0;
+}
+
+bool String::operator!=(String s) const{
+	return strcmp(buf, s.buf) != 0;
+}
+
+bool String::operator<(String s) const{
+	return strcmp(buf, s.buf) < 0;
+}
+
+bool String::operator>(String s) const{
+	return strcmp(buf, s.buf) > 0;
+}
+
+bool String::operator<=(String s) const{
+	return strcmp(buf, s.buf) <= 0;
+}
+
+bool String::operator>=(String s) const{
+	return strcmp(buf, s.buf) >= 0;
+}
+
+String String::operator+(String s) const{
+	int total_len = strlen(buf) + strlen(s.buf);
+
+	String result(total_len);
+
+	strcpy(result.buf, buf);
+	strcat(result.buf, s.buf);
+
+	return result;
+}
+
+String &String::operator+=(String s){
+	int new_len = strlen(buf) + strlen(s.buf);
+	char *new_buf = new char[new_len + 1];
+	strcpy(new_buf, buf);
+	strcat(new_buf, s.buf);
+
+	delete[] buf;
+	buf = new_buf;
+
+	return *this;
+}
+
 void String::reverse_cpy(char *dest, const char *src){
 	int len = strlen(src);
 	int i = 0;
