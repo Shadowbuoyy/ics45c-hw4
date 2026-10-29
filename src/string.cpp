@@ -50,7 +50,7 @@ int String::indexOf(char c) const{
 	return match - buf;
 }
 
-int String::indexOf(String s) const{
+int String::indexOf(const String &s) const{
 	const char *match = strstr(buf, s.buf);
 	if(match == nullptr){
 		return -1;
@@ -59,31 +59,31 @@ int String::indexOf(String s) const{
 	return match - buf;
 }
 
-bool String::operator==(String s) const{
+bool String::operator==(const String &s) const{
 	return strcmp(buf, s.buf) == 0;
 }
 
-bool String::operator!=(String s) const{
+bool String::operator!=(const String &s) const{
 	return strcmp(buf, s.buf) != 0;
 }
 
-bool String::operator<(String s) const{
+bool String::operator<(const String &s) const{
 	return strcmp(buf, s.buf) < 0;
 }
 
-bool String::operator>(String s) const{
+bool String::operator>(const String &s) const{
 	return strcmp(buf, s.buf) > 0;
 }
 
-bool String::operator<=(String s) const{
+bool String::operator<=(const String &s) const{
 	return strcmp(buf, s.buf) <= 0;
 }
 
-bool String::operator>=(String s) const{
+bool String::operator>=(const String &s) const{
 	return strcmp(buf, s.buf) >= 0;
 }
 
-String String::operator+(String s) const{
+String String::operator+(const String &s) const{
 	int total_len = strlen(buf) + strlen(s.buf);
 
 	String result(total_len);
@@ -94,7 +94,7 @@ String String::operator+(String s) const{
 	return result;
 }
 
-String &String::operator+=(String s){
+String &String::operator+=(const String &s){
 	int new_len = strlen(buf) + strlen(s.buf);
 	char *new_buf = new char[new_len + 1];
 	strcpy(new_buf, buf);
