@@ -105,13 +105,34 @@ TEST(StringFunction, strncmp) {
 }
 
 TEST(StringFunction, reverse_cpy) {
-    EXPECT_TRUE(false);
+    char dest[20];
+	String::reverse_cpy(dest, "Rat");
+	EXPECT_STREQ(dest, "taR");
+
+	String::reverse_cpy(dest, "");
+	EXPECT_STREQ(dest, "");
+
+	String::reverse_cpy(dest, "A");
+	EXPECT_STREQ(dest, "A");
 }
 
 TEST(StringFunction, strchr) {
-    EXPECT_TRUE(false);
+    const char* str = "Howdey";
+
+	EXPECT_EQ(String::strchr(str, 'w'), str + 2);
+	EXPECT_EQ(String::strchr(str, 'z'), nullptr);
+	EXPECT_EQ(String::strchr(str, '\0'), str + 6);
 }
 
 TEST(StringFunction, strstr) {
-    EXPECT_TRUE(false);
+    const char* haystack = "Bobby Brown";
+
+	EXPECT_EQ(String::strstr(haystack, "Brown"), haystack + 6);
+
+	const char* tricky = "BobBobby";
+	EXPECT_EQ(String::strstr(tricky, "Bobby"), tricky + 3);
+
+	EXPECT_EQ(String::strstr(haystack, "Zot"), nullptr);
+
+	EXPECT_EQ(String::strstr(haystack, ""), haystack);
 }

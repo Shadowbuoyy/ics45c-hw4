@@ -30,6 +30,50 @@ void String::swap(String &s){
 	std::swap(buf, s.buf);
 }
 
+void String::reverse_cpy(char *dest, const char *src){
+	int len = strlen(src);
+	int i = 0;
+	for(; i < len; i++){
+		dest[i] = src[len - 1 - i];
+	}
+	dest[len] = '\0';
+}
+
+const char* String::strchr(const char* str, char c){
+	int i = 0;
+	for(; str[i] != '\0'; i++){
+		if(str[i] == c){
+			return &str[i];
+		}
+	}
+
+	if(c == '\0'){
+		return &str[i];
+	}
+
+	return nullptr;
+}
+
+const char* String::strstr(const char *haystack, const char *needle){
+	if(*needle == '\0'){
+		return haystack;
+	}
+
+	for(int i = 0; haystack[i] != '\0'; i++){
+		int j = 0;
+		
+		for(; haystack[i + j] != '\0' && needle[j] != '\0' && haystack[i + j] == needle[j]; j++){
+			// Funny
+		}
+
+		if(needle[j] == '\0'){
+			return &haystack[i];
+		}
+	}
+
+	return nullptr;
+}
+
 char* String::strncat(char *dest, const char *src, int n){
 	int dest_len = strlen(dest);
 	int i = 0;
