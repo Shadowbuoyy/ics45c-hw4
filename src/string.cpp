@@ -34,6 +34,31 @@ int String::size() const{
 	return strlen(buf);
 }
 
+String String::reverse() const{
+	String result(strlen(buf));
+	reverse_cpy(result.buf, buf);
+
+	return result;
+}
+
+int String::indexOf(char c) const{
+	const char* match = strchr(buf, c);
+	if(match == nullptr){
+		return -1;
+	}
+
+	return match - buf;
+}
+
+int String::indexOf(String s) const{
+	const char *match = strstr(buf, s.buf);
+	if(match == nullptr){
+		return -1;
+	}
+
+	return match - buf;
+}
+
 bool String::operator==(String s) const{
 	return strcmp(buf, s.buf) == 0;
 }
