@@ -26,6 +26,12 @@ String &String::operator=(String s){
 	return *this;
 }
 
+String::String(String &&s){
+	buf = s.buf;
+
+	s.buf = strdup("");
+}
+
 void String::swap(String &s){
 	std::swap(buf, s.buf);
 }
